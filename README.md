@@ -39,7 +39,7 @@ python server.py
 ## Как развернуть на сервере
 
 ```bash
-python server.py
+python server.py -l -p "/async-download-service/test_photos" -d 1
 ```
 
 После этого перенаправить на микросервис запросы, начинающиеся с `/archive/`. Например:

@@ -59,12 +59,10 @@ async def archive(request: web.Request) -> web.StreamResponse:
         logging.error(f'Unexpected error: {exc=}')
         raise exc
     finally:
-        logging.debug(f'Killing process {proc.pid}')
-        try:
+        if proc.returncode and proc.returncode != 0:
+            logging.debug(f'Killing process {proc.pid}')
             proc.kill()
             await proc.communicate()
-        except ProcessLookupError:
-            pass
     return response
 
 
